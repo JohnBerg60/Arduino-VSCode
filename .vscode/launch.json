@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "stutil",
+            "cwd": "${workspaceRoot}",
+            "executable": "./bin/firmware.elf",
+            "name": "Debug (ST-Util)",
+            "runToMain": true,
+            "device": "STM32F103C8",
+            "v1": false
+        }
+    ]
+}

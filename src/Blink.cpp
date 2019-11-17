@@ -11,7 +11,7 @@ void setup()
 void loop()
 {
     digitalWrite(PC13, HIGH);
-    delay(1000);
+    delay(100);
     digitalWrite(PC13, LOW);
-    delay(1000);
+    delay(150);
 }

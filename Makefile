@@ -54,7 +54,7 @@ VAROBJS = $(patsubst $(VARIANT)/%.c, $(OBJDIR)/variant/%.o, $(VARSRCS))
 VARCPPSRCS = $(wildcard $(VARIANT)/*.cpp)
 VARCPPOBJS = $(patsubst $(VARIANT)/%.cpp, $(OBJDIR)/variant/%.o, $(VARCPPSRCS))
 
-CPPUSER =  $(shell find . -name "*.cpp")
+CPPUSER =  $(wildcard **/*.cpp)
 CPPUSEROBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(CPPUSER))
 
 ASMSRC = $(BASE)/system/Drivers/CMSIS/Device/ST/$(FAMILY)/Source/Templates/gcc/startup_stm32f103xb.s
@@ -138,4 +138,4 @@ clean:
 	rm -fR $(BINDIR)
 
 debug:
-	@echo $(SRCWRAPOBJS)
+	@echo $(CPPUSER)
