@@ -2,13 +2,14 @@
 Goal is to build Arduino STM32 projects, without the Arduino IDE beeing installed.  
 
 ## Workflow
-Setup a project by cloning the skelleton project. This sets up a fully configured VSCode project.  
-Edit the Blink.cpp in the sources folder, to your needs. You can add any numbers of sources files.  
+Setup a project by cloning this skelleton project. This sets up a fully configured VSCode project.  
+Edit the Blink.cpp in the sources folder to your needs. You can add any numbers of sources files.  
 
 Hit F5, the source should be compiled (first time, the Arduino core is also compiled), the compiled firmware is uploaded to the device.  
 The debugger starts, stopping a the main entry, ready for executing setup and loop.  
 
-There are task for build (make on the terminal), and clean (make clean on the terminal)
+There are task for build (make on the terminal), and clean (make clean on the terminal).  
+The compiled firmware is in the bin folder, the objects in the obj folder.
 
 ## Getting Started
 
@@ -18,8 +19,25 @@ Visual Studio Code
 Git for Windows  
 
 ### Installing
+There are several tools needed for building projects. Most tools do not need to be installed with a installer, but can simply be unzipped.  
 
-MingGw-X64
+When done, the toolchain tree should look like this:  
+```
+D:\Dev-Tools
+| - Arduino_Core_STM32
+| - gcc-arm-8
+| - MinGW-W64
+| - stlink-1.3.0-win64
+```
+
+### Arduino_Core_STM32
+
+Download the zip from [Github -> Arduino_Core_STM32](https://github.com/stm32duino/Arduino_Core_STM32)  
+Unpack it under the root of the toolchain, and rename the folder to Arduino_Core_STM32, removing the master at the end.  
+
+### gcc-arm-8
+
+### MingGw-X64
 GNU ARM Embedded Toolchaing (V8 Q3)
 
 Most of the time, the instructions in the usefull links can be followed.  
