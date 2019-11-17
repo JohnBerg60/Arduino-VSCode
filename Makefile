@@ -4,12 +4,12 @@
 # D:/Dev-Tools/arm-gcc-8/bin
 #
 
+# Configuration
 FAMILY = STM32F1xx
 BOARD = BLUEPILL_F103C8
 # sets the variant
 BOARD_NAME = PILL_F103XX
 PROC = STM32F103xB
-STARTUP = stm32f100xb
 ARM = cortex-m3
 
 OBJDIR = obj
@@ -23,15 +23,22 @@ VARIANT = $(BASE)/variants/$(BOARD_NAME)
 HALBASE = $(BASE)/system/Drivers/$(FAMILY)_HAL_Driver
 CMSIS = D:/Dev-Tools/CMSIS_5/CMSIS/Core/Include
 
+#
+# Do not edit anything below this point
+#
+
+# C++ Compiler and options
 CXX = arm-none-eabi-g++
 CXXFLAGS = -c -g -Os -mcpu=$(ARM) -std=gnu++14
 CXXFLAGS += -ffunction-sections -fdata-sections -nostdlib -fno-threadsafe-statics --param max-inline-insns-single=500 
 CXXFLAGS += -fno-rtti -fno-exceptions -fno-use-cxa-atexit -MMD
 
+# C Compiler and options
 CC = arm-none-eabi-gcc
 CCFLAGS = -c -g -Os -std=gnu11 -mcpu=$(ARM)
 CCFLAGS += -ffunction-sections -fdata-sections -nostdlib --param max-inline-insns-single=500 -MMD
 
+# Linker and options
 LD = arm-none-eabi-gcc
 LDFLAGS = -mcpu=$(ARM) -mthumb -Os --specs=nano.specs -specs=nosys.specs 
 LDFLAGS += -larm_cortexM3l_math -lm -lgcc -lstdc++
@@ -43,6 +50,7 @@ LDFLAGS += "-Wl,-Map,bin/firmware.map"
 LDFLAGS += -Wl,--start-group -Wl,--whole-archive -Wl,--no-whole-archive -lc -Wl,--end-group 
 #LDFLAGS += -Wl,--verbose
 
+# Misc. programs
 SIZE = arm-none-eabi-size
 OBJCOPY = arm-none-eabi-objcopy
 
@@ -98,6 +106,7 @@ $(BINDIR)/firmware.elf:  $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $
 	$(OBJCOPY) -O ihex $@ $(BINDIR)/firmware.hex
 	$(SIZE) -B $@
 
+# Compiling asm startup vectors
 $(ASMOBJ) : $(ASMSRC)
 	@test -d $(dir $@) || mkdir -p $(dir $@)
 	$(CC) $(CCFLAGS) $(DEFINES) $(INC) -o $@ $<

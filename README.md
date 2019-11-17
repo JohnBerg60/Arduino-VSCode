@@ -6,9 +6,9 @@ Setup a project by cloning this skeleton project. This sets up a fully configure
 Edit the Blink.cpp in the sources folder to your needs. You can add any numbers of sources files.  
 
 Hit F5, the source should be compiled (first time, the Arduino core is also compiled), the compiled firmware is uploaded to the device.  
-The debugger starts, stopping a the main entry, ready for executing setup and loop.  
+The debugger starts, stopping at the main entry, ready for executing setup and loop.  
 
-There are task for build (make on the terminal), and clean (make clean on the terminal).  
+There are tasks for build (make on the terminal), and clean (make clean on the terminal).  
 The compiled firmware is in the bin folder, the objects in the obj folder.
 
 ## Getting Started
@@ -62,7 +62,7 @@ VSCode needs two extensions:
 ## Starting a new project from scratch
 
 ### Preparation
-clone the skeletion from github:  
+Clone the skeletion from github:  
 ```
 git clone https://github.com/JBerg60/Arduino-VSCode.git
 ```
@@ -80,13 +80,12 @@ BOARD =
 # sets the variant
 BOARD_NAME = DEMO_F030F4
 PROC = STM32F030x6
-STARTUP = stm32f030x6
 ARM = cortex-m0
 ```
 
 Edit the sketch, the LED on this board is on PA4.
 
-Run the build task, build should be without any errors. Or use make in a bash terminal
+Run the build task, build should be without any errors. Or use ```make``` in a bash terminal
 
 
 ```
