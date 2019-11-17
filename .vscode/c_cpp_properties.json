@@ -9,7 +9,7 @@
                 "D:/Dev-Tools/Arduino_Core_STM32/system/STM32F1xx",
                 "D:/Dev-Tools/Arduino_Core_STM32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
                 "D:/Dev-Tools/Arduino_Core_STM32/system/Drivers/CMSIS/Include",
-                "D:/Dev-Tools/CMSIS_5-develop/CMSIS/Core/Include",
+                "D:/Dev-Tools/CMSIS_5/CMSIS/Core/Include",
                 "D:/Dev-Tools/Arduino_Core_STM32/system/Drivers/STM32F1xx_HAL_Driver/Inc",
                 "D:/Dev-Tools/Arduino_Core_STM32/variants/PILL_F103XX",
                 "D:/Dev-Tools/Arduino_Core_STM32/cores/arduino/stm32/LL"

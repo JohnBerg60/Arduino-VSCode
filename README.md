@@ -32,14 +32,12 @@ D:\Dev-Tools
 ```
 
 ### Arduino_Core_STM32
-
 Download the zip from [Github -> Arduino_Core_STM32](https://github.com/stm32duino/Arduino_Core_STM32)  
 Unpack it under the root of the toolchain, and rename the folder to Arduino_Core_STM32, removing the master at the end.  
 
 ### CMSIS_5-develop
 Download the zip from [Github -> CMSIS_5](https://github.com/ARM-software/CMSIS_5)  
 Unpack it under the root of the toolchain.  
-There is only 1 file needed from CMSIS (core_cm3.h), alternatively you can copy this file to a conveniant location, that is already included.
 
 ### gcc-arm-8
 Download the zip from [developer.arm.com](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-win32.exe?revision=b3eb9c4d-f49f-4694-8928-2084c9f090ac?product=GNU%20Arm%20Embedded%20Toolchain,32-bit,,Windows,8-2019-q3-update)  
@@ -99,9 +97,6 @@ F5 starts the debugger in Visual Studio Code
 ```
 
 ### Usefull links  
-
-
-## Deployment
 
 
 ## Authors

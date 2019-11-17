@@ -6,7 +6,7 @@ void loop();
 void setup()
 {
     pinMode(PA4, OUTPUT);
-    Serial.begin(9600);
+    //Serial.begin(9600);
 }
 
 void loop()
@@ -15,5 +15,5 @@ void loop()
     delay(150);
     digitalWrite(PA4, LOW);
     delay(150);
-    Serial.println("Hello World!");
+    //Serial.println("Hello World!");
 }
