@@ -10,6 +10,7 @@ BOARD_NAME = PILL_F103XX
 
 OBJDIR = obj
 BINDIR = bin
+SRCDIR = src
 
 BASE = D:/Dev-Tools/Arduino_Core_STM32
 CORE = $(BASE)/cores
@@ -26,15 +27,15 @@ CC = arm-none-eabi-gcc
 CCFLAGS = -c -g -Os -std=gnu11 -mcpu=cortex-m3
 CCFLAGS += -ffunction-sections -fdata-sections -nostdlib --param max-inline-insns-single=500 -MMD
 
-LINKER = arm-none-eabi-gcc
-LINKFLAGS = -mcpu=cortex-m3 -mthumb -Os --specs=nano.specs -specs=nosys.specs -larm_cortexM3l_math -lm -lgcc -lstdc++
-LINKFLAGS += -Wl,--defsym=LD_FLASH_OFFSET=0 -Wl,--defsym=LD_MAX_SIZE=131072 -Wl,--defsym=LD_MAX_DATA_SIZE=20480 
-LINKFLAGS += -Wl,--cref -Wl,--check-sections -Wl,--gc-sections -Wl,--entry=Reset_Handler -Wl,--unresolved-symbols=report-all -Wl,--warn-common 
-LINKFLAGS += -T$(VARIANT)/ldscript.ld
-LINKFLAGS += -LC:/Users/John/AppData/Local/Arduino15/packages/STM32/tools/CMSIS/5.5.1/CMSIS/DSP/Lib/GCC/
-LINKFLAGS += "-Wl,-Map,bin/firmware.map" 
-LINKFLAGS += -Wl,--start-group -Wl,--whole-archive -Wl,--no-whole-archive -lc -Wl,--end-group 
-#LINKFLAGS += -Wl,--verbose
+LD = arm-none-eabi-gcc
+LDFLAGS = -mcpu=cortex-m3 -mthumb -Os --specs=nano.specs -specs=nosys.specs -larm_cortexM3l_math -lm -lgcc -lstdc++
+LDFLAGS += -Wl,--defsym=LD_FLASH_OFFSET=0 -Wl,--defsym=LD_MAX_SIZE=131072 -Wl,--defsym=LD_MAX_DATA_SIZE=20480 
+LDFLAGS += -Wl,--cref -Wl,--check-sections -Wl,--gc-sections -Wl,--entry=Reset_Handler -Wl,--unresolved-symbols=report-all -Wl,--warn-common 
+LDFLAGS += -T$(VARIANT)/ldscript.ld
+LDFLAGS += -LC:/Users/John/AppData/Local/Arduino15/packages/STM32/tools/CMSIS/5.5.1/CMSIS/DSP/Lib/GCC/
+LDFLAGS += "-Wl,-Map,bin/firmware.map" 
+LDFLAGS += -Wl,--start-group -Wl,--whole-archive -Wl,--no-whole-archive -lc -Wl,--end-group 
+#LDFLAGS += -Wl,--verbose
 
 SIZE = arm-none-eabi-size
 OBJCOPY = arm-none-eabi-objcopy
@@ -54,8 +55,8 @@ VAROBJS = $(patsubst $(VARIANT)/%.c, $(OBJDIR)/variant/%.o, $(VARSRCS))
 VARCPPSRCS = $(wildcard $(VARIANT)/*.cpp)
 VARCPPOBJS = $(patsubst $(VARIANT)/%.cpp, $(OBJDIR)/variant/%.o, $(VARCPPSRCS))
 
-CPPUSER =  $(wildcard **/*.cpp)
-CPPUSEROBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(CPPUSER))
+SOURCES = $(wildcard $(SRCDIR)/*.cpp)
+CPPUSEROBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
 ASMSRC = $(BASE)/system/Drivers/CMSIS/Device/ST/$(FAMILY)/Source/Templates/gcc/startup_stm32f103xb.s
 ASMOBJ = $(OBJDIR)/startup_stm32f103xb.o
@@ -82,9 +83,9 @@ DEFINES = \
 
 
 # linking
-$(BINDIR)/firmware.elf: $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) USER #$(CPPUSEROBJS) 
+$(BINDIR)/firmware.elf: $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(CPPUSEROBJS) 
 	@test -d $(BINDIR) || mkdir -p $(BINDIR)
-	$(LINKER) $(LINKFLAGS) -o $@ $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(CPPUSEROBJS)
+	$(LD) $(LDFLAGS) -o $@ $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(CPPUSEROBJS)
 	$(OBJCOPY) -O binary $@ $(BINDIR)/firmware.bin
 	$(OBJCOPY) -O ihex $@ $(BINDIR)/firmware.hex
 	$(SIZE) -A $@
@@ -125,13 +126,10 @@ $(CPPOBJS):
 	$(CXX) $(CXXFLAGS) $(DEFINES) $(INC) -o $@ $(SOURCE)
 	@echo -e "\n"
 
-USER: 
-	echo hello
-
-$(CPPUSEROBJS):
-	$(eval SOURCE := $(patsubst $(OBJDIR)/%.o, %.cpp, $@))
+$(CPPUSEROBJS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
+	echo $@ $<
 	@test -d $(dir $@) || mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) $(DEFINES) $(INC) -o $@ $(SOURCE)
+	$(CXX) $(CXXFLAGS) $(DEFINES) $(INC) -o $@ $<
 	@echo -e "\n"
 
 
@@ -141,4 +139,4 @@ clean:
 	rm -fR $(BINDIR)
 
 debug:
-	@echo $(CPPUSER)
+	@echo User: $(CPPUSEROBJS)

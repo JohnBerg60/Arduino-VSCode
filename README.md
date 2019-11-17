@@ -1,19 +1,18 @@
 # Setting up VSCode for STM32 Arduino 
-
 Goal is to build Arduino STM32 projects, without the Arduino IDE beeing installed.  
 
 ## Workflow
-
 Setup a project by cloning the skelleton project. This sets up a fully configured VSCode project.  
 Edit the Blink.cpp in the sources folder, to your needs. You can add any numbers of sources files.  
 
 Hit F5, the source should be compiled (first time, the Arduino core is also compiled), the compiled firmware is uploaded to the device.  
-The debugger starts, stopping a the main entry, ready for executing setup and loop.
+The debugger starts, stopping a the main entry, ready for executing setup and loop.  
+
+There are task for build (make on the terminal), and clean (make clean on the terminal)
 
 ## Getting Started
 
 ### Prerequisites
-
 Windows 10  
 Visual Studio Code  
 Git for Windows  
@@ -74,13 +73,13 @@ The compiled files are in the bin folder.
 
 ## Authors
 
-* **John Huntjens** - *Maintainer* - [NetbaseNext](https://netbasenext.nl)
+* **John Berg** - *Maintainer* - [NetbaseNext](https://netbasenext.nl)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/JBerg60/Arduino-VSCode/graphs/contributors) who participated in this project.
 
 ## License
 
-This project is closed source.
+MIT License.
 
 ## Acknowledgments
 
