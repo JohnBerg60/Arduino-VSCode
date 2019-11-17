@@ -1,0 +1,35 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "D:/Dev-Tools/Arduino_Core_STM32/cores/arduino",
+                "D:/Dev-Tools/Arduino_Core_STM32/cores/arduino/stm32",
+                "D:/Dev-Tools/Arduino_Core_STM32/system/STM32F1xx",
+                "D:/Dev-Tools/Arduino_Core_STM32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
+                "D:/Dev-Tools/Arduino_Core_STM32/system/Drivers/CMSIS/Include",
+                "D:/Dev-Tools/Arduino_Core_STM32/system/Drivers/STM32F1xx_HAL_Driver/Inc",
+                "D:/Dev-Tools/Arduino_Core_STM32/variants/PILL_F103XX",
+                "D:/Dev-Tools/Arduino_Core_STM32/cores/arduino/stm32/LL"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "STM32F1xx",
+                "ARDUINO=10810",
+                "ARDUINO_BLUEPILL_F103C8",
+                "ARDUINO_ARCH_STM32",
+                "BOARD_NAME=BLUEPILL_F103C8",
+                "STM32F103xB",
+                "HAL_UART_MODULE_ENABLED"
+            ],
+            "compilerPath": "D:/Dev-Tools/gcc-arm-8/bin/arm-none-eabi-gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
