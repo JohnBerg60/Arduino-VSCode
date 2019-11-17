@@ -82,7 +82,7 @@ DEFINES = \
 
 
 # linking
-$(BINDIR)/firmware.elf: $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(CPPUSEROBJS) 
+$(BINDIR)/firmware.elf: $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) USER #$(CPPUSEROBJS) 
 	@test -d $(BINDIR) || mkdir -p $(BINDIR)
 	$(LINKER) $(LINKFLAGS) -o $@ $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(CPPUSEROBJS)
 	$(OBJCOPY) -O binary $@ $(BINDIR)/firmware.bin
@@ -124,6 +124,9 @@ $(CPPOBJS):
 	@test -d $(dir $@) || mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) $(DEFINES) $(INC) -o $@ $(SOURCE)
 	@echo -e "\n"
+
+USER: 
+	echo hello
 
 $(CPPUSEROBJS):
 	$(eval SOURCE := $(patsubst $(OBJDIR)/%.o, %.cpp, $@))

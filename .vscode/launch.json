@@ -7,8 +7,9 @@
             "servertype": "stutil",
             "cwd": "${workspaceRoot}",
             "executable": "./bin/firmware.elf",
-            "name": "Debug (ST-Util)",
+            "name": "STM32 Debug (ST-Util)",
             "runToMain": true,
+            "preLaunchTask": "build",
             "device": "STM32F103C8",
             "v1": false
         }

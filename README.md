@@ -1,22 +1,27 @@
-# Setting up VSCode for Arduino 
+# Setting up VSCode for STM32 Arduino 
 
 Goal is to build Arduino STM32 projects, without the Arduino IDE beeing installed.  
 
+## Workflow
+
+Setup a project by cloning the skelleton project. This sets up a fully configured VSCode project.  
+Edit the Blink.cpp in the sources folder, to your needs. You can add any numbers of sources files.  
+
+Hit F5, the source should be compiled (first time, the Arduino core is also compiled), the compiled firmware is uploaded to the device.  
+The debugger starts, stopping a the main entry, ready for executing setup and loop.
 
 ## Getting Started
-
-tbd
 
 ### Prerequisites
 
 Windows 10  
 Visual Studio Code  
 Git for Windows  
-MingGw-X64
-GNU ARM Embedded Toolchaing (V8 Q3)
-
 
 ### Installing
+
+MingGw-X64
+GNU ARM Embedded Toolchaing (V8 Q3)
 
 Most of the time, the instructions in the usefull links can be followed.  
 Install MingGw-X64 on a location without a space in the path.  
