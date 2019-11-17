@@ -36,36 +36,28 @@ Download the zip from [Github -> Arduino_Core_STM32](https://github.com/stm32dui
 Unpack it under the root of the toolchain, and rename the folder to Arduino_Core_STM32, removing the master at the end.  
 
 ### gcc-arm-8
+Download the zip from [developer.arm.com](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-win32.exe?revision=b3eb9c4d-f49f-4694-8928-2084c9f090ac?product=GNU%20Arm%20Embedded%20Toolchain,32-bit,,Windows,8-2019-q3-update)  
+Unpack it under the root of the toolchain, and rename the folder to gcc-arm-8.  
+Edit your path (windows r --> env) and add the bin dir of the toolchain.  
 
 ### MingGw-X64
-GNU ARM Embedded Toolchaing (V8 Q3)
+Download the zip from [sourceforge](https://sourceforge.net/projects/mingw-w64/)  
+Unpack it, and move the folder under the dev tools.
+Edit your path (windows r --> env) and add the bin dir of the MingGw-X64.  
+MingGW-X64 is used for make.  For convinience, just copy mingw32-make.exe to make.exe (220kB).    
 
-Most of the time, the instructions in the usefull links can be followed.  
-Install MingGw-X64 on a location without a space in the path.  
-Example:  
+### stlink-1.3.0-win64
+Download the zip from [github](https://github.com/texane/stlink/releases/tag/1.3.0)  
+Unpack it, and move the folder under the dev tools.  
 
-```
-D:\Dev-Tools\mingw-w64
-```
-
-MingGW-X64 is used for make.  For convinience, just copy mingw32-make.exe to make.exe (220kB)  
-
-The ARM toolchain can be a zip file, that is unzip in a conviniant place:  
-```
-D:\Dev-Tools\arm-gnu-8
-```
-
-In Visual Studio Code It is not possible to assigns keybindings on a project basis to tasks, so add the keybinding global, and give the tasks some global names.  
-
-F5 is already the key to start the debugger!
-
-Git has a bash terminal, that can be started by making a shortcut in Windows.  
-Visual Studio Code also can start Powershell, Cmd and Bash terminals.  
-By starting a bash terminal, we can act if we where on unix for our makescript, making it platform independent, and much easyer!
+### Preparing Visual Studio Code
+VSCode needs to extensions:  
+- C/C++ for Visual Studio Code  
+- Cortex Debug
 
 ## Using the system
 
-Buildd your C/C++ project structure as you like.  
+Build your C/C++ project structure as you like.  
 From the commandline, or in Visual Studio code
 
 ```
@@ -77,17 +69,9 @@ F5 starts the debugger in Visual Studio Code
 
 ### Usefull links  
 
-https://code.visualstudio.com/docs/cpp/config-mingw  
-https://stackoverflow.com/questions/42752721/mingw-64-ships-without-make-exe  
-https://sourceforge.net/projects/mingw-w64/  
-https://code.visualstudio.com/docs/getstarted/keybindings  
-
-Tutorial on Makefile:  
-https://www.youtube.com/watch?v=_r7i5X0rXJk  
 
 ## Deployment
 
-The compiled files are in the bin folder.
 
 ## Authors
 
