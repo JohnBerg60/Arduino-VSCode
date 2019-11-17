@@ -61,10 +61,35 @@ VSCode needs two extensions:
 - C/C++ for Visual Studio Code  
 - Cortex Debug
 
-## Using the system
+## Starting a new project from scratch
 
-Build your C/C++ project structure as you like.  
-From the commandline, or in Visual Studio code
+### Preparation
+clone the skelletion from github:  
+```
+git clone https://github.com/JBerg60/Arduino-VSCode.git
+```
+Rename the folder to something usefull, F030-Blink seems sensible.
+Open this folder in VSCode.
+
+### Setting the target
+The repo is configured for a STM32F103C8, a BluePill board on sale for a few dollar on Aliexpress.  
+Lets say we want to change to a STM32F030F4 board, that is even cheaper as the BluePill.
+
+Edit the Makefile:  
+```
+FAMILY = STM32F0xx
+BOARD = 
+# sets the variant
+BOARD_NAME = DEMO_F030F4
+PROC = STM32F030x6
+STARTUP = stm32f030x6
+ARM = cortex-m0
+```
+
+Edit the sketch, the LED on this board is on PA4.
+
+Run the build task, build should be without any errors. Or use make in a bash terminal
+
 
 ```
 make -> build the system (shortcut ctrl-shift b)  

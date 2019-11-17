@@ -5,15 +5,15 @@ void loop();
 
 void setup()
 {
-    pinMode(PC13, OUTPUT);
+    pinMode(PA4, OUTPUT);
     Serial.begin(9600);
 }
 
 void loop()
-{
-    digitalWrite(PC13, HIGH);
-    delay(750);
-    digitalWrite(PC13, LOW);
+{ 
+    digitalWrite(PA4, HIGH);
+    delay(150);
+    digitalWrite(PA4, LOW);
     delay(150);
     Serial.println("Hello World!");
 }

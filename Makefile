@@ -4,9 +4,13 @@
 # D:/Dev-Tools/arm-gcc-8/bin
 #
 
-FAMILY = STM32F1xx
-BOARD = BLUEPILL_F103C8
-BOARD_NAME = PILL_F103XX
+FAMILY = STM32F0xx
+BOARD = 
+# sets the variant
+BOARD_NAME = DEMO_F030F4
+PROC = STM32F030x6
+STARTUP = stm32f030x6
+ARM = cortex-m0
 
 OBJDIR = obj
 BINDIR = bin
@@ -20,16 +24,16 @@ HALBASE = $(BASE)/system/Drivers/$(FAMILY)_HAL_Driver
 CMSIS = D:/Dev-Tools/CMSIS_5-develop/CMSIS/Core/Include
 
 CXX = arm-none-eabi-g++
-CXXFLAGS = -c -g -Os -mcpu=cortex-m3 -std=gnu++14
+CXXFLAGS = -c -g -Os -mcpu=$(ARM) -std=gnu++14
 CXXFLAGS += -ffunction-sections -fdata-sections -nostdlib -fno-threadsafe-statics --param max-inline-insns-single=500 
 CXXFLAGS += -fno-rtti -fno-exceptions -fno-use-cxa-atexit -MMD
 
 CC = arm-none-eabi-gcc
-CCFLAGS = -c -g -Os -std=gnu11 -mcpu=cortex-m3
+CCFLAGS = -c -g -Os -std=gnu11 -mcpu=$(ARM)
 CCFLAGS += -ffunction-sections -fdata-sections -nostdlib --param max-inline-insns-single=500 -MMD
 
 LD = arm-none-eabi-gcc
-LDFLAGS = -mcpu=cortex-m3 -mthumb -Os --specs=nano.specs -specs=nosys.specs -larm_cortexM3l_math -lm -lgcc -lstdc++
+LDFLAGS = -mcpu=$(ARM) -mthumb -Os --specs=nano.specs -specs=nosys.specs -larm_cortexM3l_math -lm -lgcc -lstdc++
 LDFLAGS += -Wl,--defsym=LD_FLASH_OFFSET=0 -Wl,--defsym=LD_MAX_SIZE=131072 -Wl,--defsym=LD_MAX_DATA_SIZE=20480 
 LDFLAGS += -Wl,--cref -Wl,--check-sections -Wl,--gc-sections -Wl,--entry=Reset_Handler -Wl,--unresolved-symbols=report-all -Wl,--warn-common 
 LDFLAGS += -T$(VARIANT)/ldscript.ld
@@ -59,8 +63,8 @@ VARCPPOBJS = $(patsubst $(VARIANT)/%.cpp, $(OBJDIR)/variant/%.o, $(VARCPPSRCS))
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 CPPUSEROBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
-ASMSRC = $(BASE)/system/Drivers/CMSIS/Device/ST/$(FAMILY)/Source/Templates/gcc/startup_stm32f103xb.s
-ASMOBJ = $(OBJDIR)/startup_stm32f103xb.o
+ASMSRC = $(BASE)/system/Drivers/CMSIS/Device/ST/$(FAMILY)/Source/Templates/gcc/startup_$(STARTUP).s
+ASMOBJ = $(OBJDIR)/startup_$(STARTUP).o
 
 INC = \
 -I$(ARDUINO) \
@@ -80,17 +84,17 @@ DEFINES = \
 -DARDUINO_$(BOARD)  \
 -DARDUINO_ARCH_STM32 \
 -DBOARD_NAME=$(BOARD) \
--DSTM32F103xB \
+-D$(PROC) \
 -DHAL_UART_MODULE_ENABLED
 
 
 # linking
-$(BINDIR)/firmware.elf: $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(CPPUSEROBJS) 
+$(BINDIR)/firmware.elf:  $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(CPPUSEROBJS) 
 	@test -d $(BINDIR) || mkdir -p $(BINDIR)
 	$(LD) $(LDFLAGS) -o $@ $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(CPPUSEROBJS)
 	$(OBJCOPY) -O binary $@ $(BINDIR)/firmware.bin
 	$(OBJCOPY) -O ihex $@ $(BINDIR)/firmware.hex
-	$(SIZE) -A $@
+	$(SIZE) -B $@
 
 $(ASMOBJ) : $(ASMSRC)
 	@test -d $(dir $@) || mkdir -p $(dir $@)
