@@ -17,6 +17,7 @@ CORE = $(BASE)/cores
 ARDUINO = $(CORE)/arduino
 VARIANT = $(BASE)/variants/$(BOARD_NAME)
 HALBASE = $(BASE)/system/Drivers/$(FAMILY)_HAL_Driver
+CMSIS = D:/Dev-Tools/CMSIS_5-develop/CMSIS/Core/Include
 
 CXX = arm-none-eabi-g++
 CXXFLAGS = -c -g -Os -mcpu=cortex-m3 -std=gnu++14
@@ -70,7 +71,8 @@ INC = \
 -I$(BASE)/system/Drivers/CMSIS/Include \
 -I$(HALBASE)/Inc \
 -I$(BASE)/system/$(FAMILY) \
--I$(VARIANT) 
+-I$(VARIANT) \
+-I$(CMSIS)
 
 DEFINES = \
 -D$(FAMILY) \
