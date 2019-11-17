@@ -64,8 +64,9 @@ VARCPPOBJS = $(patsubst $(VARIANT)/%.cpp, $(OBJDIR)/variant/%.o, $(VARCPPSRCS))
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 CPPUSEROBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
-ASMSRC = $(BASE)/system/Drivers/CMSIS/Device/ST/$(FAMILY)/Source/Templates/gcc/startup_$(STARTUP).s
-ASMOBJ = $(OBJDIR)/startup_$(STARTUP).o
+startup = startup_$(shell echo $(PROC) | tr '[:upper:]' '[:lower:]')
+ASMSRC = $(BASE)/system/Drivers/CMSIS/Device/ST/$(FAMILY)/Source/Templates/gcc/$(startup).s
+ASMOBJ = $(OBJDIR)/$(startup).o
 
 INC = \
 -I$(ARDUINO) \
@@ -146,4 +147,4 @@ clean:
 	rm -fR $(BINDIR)
 
 debug:
-	@echo User: $(CPPUSEROBJS)
+	@echo User: $(startup)
