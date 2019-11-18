@@ -1,5 +1,5 @@
 # Setting up VSCode for STM32 Arduino 
-Goal is to build Arduino STM32 projects, without the Arduino IDE beeing installed.  
+Goal is to build Arduino STM32 projects, without the Arduino IDE being installed.  
 
 ## Workflow
 Setup a project by cloning this skeleton project. This sets up a fully configured VSCode project.  
@@ -14,6 +14,11 @@ The compiled firmware is in the bin folder, the objects in the obj folder.
 During coding, intellisense assists. 
 
 ![Intellisense](doc/intellisense.png?raw=true "")
+
+
+Debugger at a breakpoint, showing global and local vars. Also a variable is watched.
+![Debugger](doc/debugger.png?raw=true "")
+
 
 ## Getting Started
 
@@ -66,7 +71,7 @@ VSCode needs two extensions:
 ## Starting a new project from scratch
 
 ### Preparation
-Clone the skeletion from github:  
+Clone the skeleton from github:  
 ```
 git clone https://github.com/JBerg60/Arduino-VSCode.git
 ```
