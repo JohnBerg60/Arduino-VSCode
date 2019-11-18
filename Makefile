@@ -28,6 +28,8 @@ VARIANT = $(BASE)/variants/$(BOARD)
 HALBASE = $(BASE)/system/Drivers/$(FAMILY)_HAL_Driver
 CMSIS = D:/Dev-Tools/CMSIS_5/CMSIS/Core/Include
 
+export proefje=/usr/local/demo
+
 # C++ Compiler and options
 CXX = arm-none-eabi-g++
 CXXFLAGS = -c -g -Os -mcpu=$(ARM) -std=gnu++14
@@ -162,4 +164,4 @@ info:
 	$(STLINK)/bin/st-info --probe
 
 debug:
-	@echo User: $(startup)
+	@echo Path: $(proefje)

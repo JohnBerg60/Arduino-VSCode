@@ -65,7 +65,11 @@ Unpack it, and move the folder under the dev tools.
 ### Preparing Visual Studio Code
 VSCode needs two extensions:  
 - C/C++ for Visual Studio Code  
-- Cortex Debug
+- Cortex Debug  
+
+For intellisense to work, ```c_cpp_properties.json``` in the .vscode folder needs to be configured with the right settings. Use the same settings for family, proc and board as in the makefile.  
+```settings.json``` needs to be configured with the path to stutil.
+
 
 ## Starting a new project from scratch
 
