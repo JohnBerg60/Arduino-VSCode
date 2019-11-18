@@ -1,8 +1,10 @@
-# Basic Makefile
 #
-# path to gcc:
-# D:/Dev-Tools/arm-gcc-8/bin
+# Makefile to build and flash Arduino sketches
 #
+
+BASE = D:/Dev-Tools/Arduino_Core_STM32
+STLINK = D:/Dev-Tools/stlink-1.3.0-win64
+# for a list of boards, see: $(BASE)/variants
 
 # Configuration
 FAMILY = STM32F1xx
@@ -16,7 +18,6 @@ OBJDIR = obj
 BINDIR = bin
 SRCDIR = src
 
-BASE = D:/Dev-Tools/Arduino_Core_STM32
 CORE = $(BASE)/cores
 ARDUINO = $(CORE)/arduino
 VARIANT = $(BASE)/variants/$(BOARD_NAME)
@@ -150,10 +151,16 @@ $(CPPUSEROBJS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
 	@echo -e "\n"
 
 
-.PHONY: clean debug
+.PHONY: clean flash debug info
 clean:
 	rm -fR $(OBJDIR)
 	rm -fR $(BINDIR)
+
+flash: $(BINDIR)/firmware.elf
+	$(STLINK)/bin/st-flash write ./$(BINDIR)/firmware.bin 0x8000000
+
+info:
+	$(STLINK)/bin/st-info --probe
 
 debug:
 	@echo User: $(startup)

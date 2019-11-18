@@ -9,6 +9,7 @@
 *.obj
 *.bc
 *.cache
+.vscode/*.cortex.*.json
 
 ### C ###
 # Prerequisites

@@ -8,15 +8,14 @@ Edit the Blink.cpp in the sources folder to your needs. You can add any number o
 Hit F5, the source should be compiled (first time, the Arduino core is also compiled), the compiled firmware is uploaded to the device.  
 The debugger starts, stopping at the main entry, ready for executing setup and loop.  
 
-There are tasks for build (```make``` on the terminal), and clean (```make clean``` on the terminal).  
+There are tasks for build (```make``` on the terminal), flash (```make flash``` on the terminal) and clean (```make clean``` on the terminal).  
 The compiled firmware is in the bin folder, the objects in the obj folder.
 
-During coding, intellisense assists. 
-
+During coding, intellisense assists:  
 ![Intellisense](doc/intellisense.png?raw=true "")
-
-
-Debugger at a breakpoint, showing global and local vars. Also a variable is watched.
+<br/>
+<br/>
+Debugger at a breakpoint, showing global and local vars. Also a variable is watched:  
 ![Debugger](doc/debugger.png?raw=true "")
 
 
@@ -100,6 +99,9 @@ Run the build task(or use ```make``` in a bash terminal), build should be withou
 ```
 make -> build the system (shortcut ctrl-shift b)  
 make clean -> clean the system (shortcut ctrl-shift c)  
+make run -> build the firmware, and flash to the device (shortcut ctrl-shift r)  
+make info -> get info on the connected device (shortcut ctrl-shift i)  
+make flash -> flash the firmware to the device (shortcut ctrl-shift f) If necessary, the firmware is build before flashing. 
 F5 starts the debugger in Visual Studio Code
 
 ```

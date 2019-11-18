@@ -23,6 +23,30 @@
             }
         },
         {
+            "label": "flash",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "flash"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "info",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "info"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "label": "debug-make",
             "type": "shell",
             "command": "make",

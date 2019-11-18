@@ -3,17 +3,19 @@
 void setup();
 void loop();
 
+#define LED PC13
+
 void setup()
 {
-    pinMode(PA4, OUTPUT);
+    pinMode(LED, OUTPUT);
     Serial.begin(9600);
 }
 
 void loop()
 { 
-    digitalWrite(PA4, HIGH);
-    delay(150);
-    digitalWrite(PA4, LOW);
-    delay(150);
+    digitalWrite(LED, HIGH);
+    delay(500);
+    digitalWrite(LED, LOW);
+    delay(1500);
     Serial.println("Hello World!");
 }
