@@ -23,7 +23,7 @@ SRCDIR = src
 CORE = $(BASE)/cores
 ARDUINO = $(CORE)/arduino
 VARIANT = $(BASE)/variants/$(BOARD)
-LIBDIR = $(BASE)/libraries/Wire/Src
+LIBDIR = $(BASE)/libraries
 HALBASE = $(BASE)/system/Drivers/$(FAMILY)_HAL_Driver
 CMSIS = D:/Dev-Tools/CMSIS_5/CMSIS/Core/Include
 
@@ -74,8 +74,11 @@ VARCPPOBJS = $(patsubst $(VARIANT)/%.cpp, $(OBJDIR)/variant/%.o, $(VARCPPSRCS))
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 CPPUSEROBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
-LIBSRC = $(wildcard $(LIBDIR)/*.cpp)
-LIBOBJS = $(patsubst $(LIBDIR)/%.cpp, $(OBJDIR)/lib/%.o, $(LIBSRC))
+LIBSRC = \
+$(LIBDIR)/Wire/src/Wire.cpp \
+$(LIBDIR)/SPI/src/SPI.cpp \
+$(LIBDIR)/IWatchdog/src/IWatchdog.cpp 
+LIBOBJS = $(patsubst %.cpp, $(OBJDIR)/lib/%.o, $(notdir $(LIBSRC)))
 
 startup = startup_$(shell echo $(PROC) | tr '[:upper:]' '[:lower:]')
 ASMSRC = $(BASE)/system/Drivers/CMSIS/Device/ST/$(FAMILY)/Source/Templates/gcc/$(startup).s
@@ -91,7 +94,7 @@ INC = \
 -I$(HALBASE)/Inc \
 -I$(BASE)/system/$(FAMILY) \
 -I$(VARIANT) \
--I$(LIBDIR) \
+-I$(LIBDIR)/Wire/src -I$(LIBDIR)/SPI/src -I$(LIBDIR)/IWatchdog/src  \
 -I$(CMSIS)
 
 DEFINES = \
@@ -148,7 +151,8 @@ $(CPPOBJS):
 	@echo -e "\n"
 
 $(LIBOBJS):
-	$(eval SOURCE := $(patsubst $(OBJDIR)/lib/%.o, $(LIBDIR)/%.cpp, $@))
+	$(eval LIBNAME := $(basename $(notdir $@)))
+	$(eval SOURCE := $(patsubst $(OBJDIR)/lib/%.o, $(LIBDIR)/$(LIBNAME)/Src/%.cpp, $@))
 	@test -d $(dir $@) || mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) $(DEFINES) $(INC) -o $@ $(SOURCE)
 	@echo -e "\n"
@@ -172,4 +176,5 @@ info:
 	$(STLINK)/bin/st-info --probe
 
 debug:
-	@echo Path: $(proefje)
+	@echo $(LIBSRC)
+	@echo $(LIBOBJS)

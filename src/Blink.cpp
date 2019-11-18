@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <Wire.h>
+#include <SPI.h>
 
 void setup();
 void loop();
@@ -10,7 +11,6 @@ void setup()
 {
     pinMode(LED, OUTPUT);
     Serial.begin(9600);
-    Wire.begin();
 }
 
 void loop()
