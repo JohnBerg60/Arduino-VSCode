@@ -47,6 +47,14 @@
             }
         },
         {
+            "label": "monitor",
+            "type": "shell",
+            "command": "termite",
+            "args": [
+                "-serial COM4 -sercfg 115200"
+            ]
+        },
+        {
             "label": "debug-make",
             "type": "shell",
             "command": "make",

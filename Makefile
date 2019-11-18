@@ -20,11 +20,10 @@ SRCDIR = src
 #
 # Do not edit anything below this point
 #
-
-
 CORE = $(BASE)/cores
 ARDUINO = $(CORE)/arduino
 VARIANT = $(BASE)/variants/$(BOARD)
+LIBDIR = $(BASE)/libraries/Wire/Src
 HALBASE = $(BASE)/system/Drivers/$(FAMILY)_HAL_Driver
 CMSIS = D:/Dev-Tools/CMSIS_5/CMSIS/Core/Include
 
@@ -75,6 +74,9 @@ VARCPPOBJS = $(patsubst $(VARIANT)/%.cpp, $(OBJDIR)/variant/%.o, $(VARCPPSRCS))
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 CPPUSEROBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
+LIBSRC = $(wildcard $(LIBDIR)/*.cpp)
+LIBOBJS = $(patsubst $(LIBDIR)/%.cpp, $(OBJDIR)/lib/%.o, $(LIBSRC))
+
 startup = startup_$(shell echo $(PROC) | tr '[:upper:]' '[:lower:]')
 ASMSRC = $(BASE)/system/Drivers/CMSIS/Device/ST/$(FAMILY)/Source/Templates/gcc/$(startup).s
 ASMOBJ = $(OBJDIR)/$(startup).o
@@ -89,6 +91,7 @@ INC = \
 -I$(HALBASE)/Inc \
 -I$(BASE)/system/$(FAMILY) \
 -I$(VARIANT) \
+-I$(LIBDIR) \
 -I$(CMSIS)
 
 DEFINES = \
@@ -101,9 +104,9 @@ DEFINES = \
 
 
 # linking
-$(BINDIR)/firmware.elf:  $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(CPPUSEROBJS) 
+$(BINDIR)/firmware.elf:  $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(LIBOBJS) $(CPPUSEROBJS) 
 	@test -d $(BINDIR) || mkdir -p $(BINDIR)
-	$(LD) $(LDFLAGS) -o $@ $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(CPPUSEROBJS)
+	$(LD) $(LDFLAGS) -o $@ $(ASMOBJ) $(VAROBJS) $(VARCPPOBJS) $(OBJS) $(CPPOBJS) $(HALOBJS) $(LIBOBJS) $(CPPUSEROBJS)
 	$(OBJCOPY) -O binary $@ $(BINDIR)/firmware.bin
 	$(OBJCOPY) -O ihex $@ $(BINDIR)/firmware.hex
 	$(SIZE) -B $@
@@ -138,9 +141,14 @@ $(OBJS):
 	$(CC) $(CCFLAGS) $(DEFINES) $(INC) -o $@ $(SOURCE)
 	@echo -e "\n"
 
-
 $(CPPOBJS):
 	$(eval SOURCE := $(patsubst $(OBJDIR)/%.o, $(CORE)/%.cpp, $@))
+	@test -d $(dir $@) || mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $(DEFINES) $(INC) -o $@ $(SOURCE)
+	@echo -e "\n"
+
+$(LIBOBJS):
+	$(eval SOURCE := $(patsubst $(OBJDIR)/lib/%.o, $(LIBDIR)/%.cpp, $@))
 	@test -d $(dir $@) || mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) $(DEFINES) $(INC) -o $@ $(SOURCE)
 	@echo -e "\n"

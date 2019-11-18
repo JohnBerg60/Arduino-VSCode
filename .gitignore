@@ -9,7 +9,7 @@
 *.obj
 *.bc
 *.cache
-.vscode/*.cortex.*.json
+.vscode/.cortex-debug*.json
 
 ### C ###
 # Prerequisites

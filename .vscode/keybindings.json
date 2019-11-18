@@ -20,6 +20,11 @@
         "args": "clean"
     },
     {
+        "key": "ctrl+shift+m",
+        "command": "workbench.action.tasks.runTask",
+        "args": "monitor"
+    },
+    {
         "key": "ctrl+shift+d",
         "command": "workbench.action.tasks.runTask",
         "args": "debug-make"

@@ -2,22 +2,24 @@
     "env": {
         "stm32.family": "STM32F1xx",
         "stm32.proc": "STM32F103xB",
-        "stm32.board": "PILL_F103XX"
+        "stm32.board": "PILL_F103XX",
+        "arduino.stm32" : "D:/Dev-Tools/Arduino_Core_STM32"
     },
     "configurations": [
         {
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "D:/Dev-Tools/Arduino_Core_STM32/cores/arduino",
-                "D:/Dev-Tools/Arduino_Core_STM32/cores/arduino/stm32",
-                "D:/Dev-Tools/Arduino_Core_STM32/system/${stm32.family}",
-                "D:/Dev-Tools/Arduino_Core_STM32/system/Drivers/CMSIS/Device/ST/${stm32.family}/Include",
-                "D:/Dev-Tools/Arduino_Core_STM32/system/Drivers/CMSIS/Include",
-                "D:/Dev-Tools/CMSIS_5/CMSIS/Core/Include",
-                "D:/Dev-Tools/Arduino_Core_STM32/system/Drivers/${stm32.family}_HAL_Driver/Inc",
-                "D:/Dev-Tools/Arduino_Core_STM32/variants/${stm32.board}",
-                "D:/Dev-Tools/Arduino_Core_STM32/cores/arduino/stm32/LL"
+                "${arduino.stm32}/cores/arduino",
+                "${arduino.stm32}/cores/arduino/stm32",
+                "${arduino.stm32}/system/${stm32.family}",
+                "${arduino.stm32}/system/Drivers/CMSIS/Device/ST/${stm32.family}/Include",
+                "${arduino.stm32}/system/Drivers/CMSIS/Include",
+                "${arduino.stm32}/libraries/Wire/src",
+                "${arduino.stm32}/system/Drivers/${stm32.family}_HAL_Driver/Inc",
+                "${arduino.stm32}/variants/${stm32.board}",
+                "${arduino.stm32}/cores/arduino/stm32/LL",
+                "D:/Dev-Tools/CMSIS_5/CMSIS/Core/Include"
             ],
             "defines": [
                 "_DEBUG",
