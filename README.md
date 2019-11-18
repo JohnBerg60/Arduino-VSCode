@@ -104,8 +104,6 @@ make -> build the system (shortcut ctrl-shift b)
 
 make clean -> clean the system (shortcut ctrl-shift c)  
 
-make run -> build the firmware, and flash to the device (shortcut ctrl-shift r).   
-
 make info -> get info on the connected device (shortcut ctrl-shift i).  
 
 make flash -> flash the firmware to the device (shortcut ctrl-shift f).  
