@@ -3,13 +3,17 @@ Goal is to build Arduino STM32 projects, without the Arduino IDE beeing installe
 
 ## Workflow
 Setup a project by cloning this skeleton project. This sets up a fully configured VSCode project.  
-Edit the Blink.cpp in the sources folder to your needs. You can add any numbers of sources files.  
+Edit the Blink.cpp in the sources folder to your needs. You can add any number of sources files.  
 
 Hit F5, the source should be compiled (first time, the Arduino core is also compiled), the compiled firmware is uploaded to the device.  
 The debugger starts, stopping at the main entry, ready for executing setup and loop.  
 
-There are tasks for build (make on the terminal), and clean (make clean on the terminal).  
+There are tasks for build (```make``` on the terminal), and clean (```make clean``` on the terminal).  
 The compiled firmware is in the bin folder, the objects in the obj folder.
+
+During coding, intellisense assists. 
+
+![Intellisense](doc/intellisense.png?raw=true "")
 
 ## Getting Started
 
@@ -19,7 +23,7 @@ Visual Studio Code
 Git for Windows  
 
 ### Installing
-There are several tools needed for building projects. Most tools do not need to be installed with a installer, but can simply be unzipped.  
+There are several tools needed for building projects. Most tools do not need to be installed with an installer, but can simply be unzipped.  
 
 When done, the toolchain tree should look like this:  
 ```
@@ -85,9 +89,9 @@ ARM = cortex-m0
 
 Edit the sketch, the LED on this board is on PA4.
 
-Run the build task, build should be without any errors. Or use ```make``` in a bash terminal
+Run the build task(or use ```make``` in a bash terminal), build should be without any errors. 
 
-
+### Useful commands
 ```
 make -> build the system (shortcut ctrl-shift b)  
 make clean -> clean the system (shortcut ctrl-shift c)  
@@ -95,7 +99,7 @@ F5 starts the debugger in Visual Studio Code
 
 ```
 
-### Usefull links  
+### Useful links  
 
 
 ## Authors
