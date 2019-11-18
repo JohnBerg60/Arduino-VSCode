@@ -4,13 +4,12 @@
 
 BASE = D:/Dev-Tools/Arduino_Core_STM32
 STLINK = D:/Dev-Tools/stlink-1.3.0-win64
+
 # for a list of boards, see: $(BASE)/variants
 
 # Configuration
 FAMILY = STM32F1xx
-BOARD = BLUEPILL_F103C8
-# sets the variant
-BOARD_NAME = PILL_F103XX
+BOARD = PILL_F103XX
 PROC = STM32F103xB
 ARM = cortex-m3
 
@@ -18,15 +17,16 @@ OBJDIR = obj
 BINDIR = bin
 SRCDIR = src
 
-CORE = $(BASE)/cores
-ARDUINO = $(CORE)/arduino
-VARIANT = $(BASE)/variants/$(BOARD_NAME)
-HALBASE = $(BASE)/system/Drivers/$(FAMILY)_HAL_Driver
-CMSIS = D:/Dev-Tools/CMSIS_5/CMSIS/Core/Include
-
 #
 # Do not edit anything below this point
 #
+
+
+CORE = $(BASE)/cores
+ARDUINO = $(CORE)/arduino
+VARIANT = $(BASE)/variants/$(BOARD)
+HALBASE = $(BASE)/system/Drivers/$(FAMILY)_HAL_Driver
+CMSIS = D:/Dev-Tools/CMSIS_5/CMSIS/Core/Include
 
 # C++ Compiler and options
 CXX = arm-none-eabi-g++
@@ -91,11 +91,10 @@ INC = \
 
 DEFINES = \
 -D$(FAMILY) \
--DARDUINO=10810 \
--DARDUINO_$(BOARD)  \
--DARDUINO_ARCH_STM32 \
--DBOARD_NAME=$(BOARD) \
 -D$(PROC) \
+-DBOARD=$(BOARD) \
+-DARDUINO=10810 \
+-DARDUINO_ARCH_STM32 \
 -DHAL_UART_MODULE_ENABLED
 
 
