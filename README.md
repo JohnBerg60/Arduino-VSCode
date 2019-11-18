@@ -88,16 +88,15 @@ Lets say we want to change to a STM32F030F4 board, that is even cheaper as the B
 Edit the Makefile:  
 ```
 FAMILY = STM32F0xx
-BOARD = 
-# sets the variant
-BOARD_NAME = DEMO_F030F4
+BOARD = PILL_F103XX
 PROC = STM32F030x6
 ARM = cortex-m0
-```
+```  
+Edit the sketch, the LED on this board is on PA4.  
+Run the build task(or use ```make``` in a bash terminal), build should be without any errors.  
 
-Edit the sketch, the LED on this board is on PA4.
+note: for intellisense to work, these settings also need to be configured in ```c_cpp_properties.json```.
 
-Run the build task(or use ```make``` in a bash terminal), build should be without any errors. 
 
 ### Useful commands
 ```
