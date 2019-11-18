@@ -101,11 +101,19 @@ note: for intellisense to work, these settings also need to be configured in ```
 ### Useful commands
 ```
 make -> build the system (shortcut ctrl-shift b)  
+
 make clean -> clean the system (shortcut ctrl-shift c)  
-make run -> build the firmware, and flash to the device (shortcut ctrl-shift r)  
-make info -> get info on the connected device (shortcut ctrl-shift i)  
-make flash -> flash the firmware to the device (shortcut ctrl-shift f) If necessary, the firmware is build before flashing. 
-F5 starts the debugger in Visual Studio Code
+
+make run -> build the firmware, and flash to the device (shortcut ctrl-shift r).   
+
+make info -> get info on the connected device (shortcut ctrl-shift i).  
+
+make flash -> flash the firmware to the device (shortcut ctrl-shift f).  
+                If necessary, the firmware is build before flashing. 
+
+F5 starts the debugger in Visual Studio Code  
+
+Ctrl-F5 stops the debugger.  
 
 ```
 
