@@ -88,7 +88,7 @@ Lets say we want to change to a STM32F030F4 board, that is even cheaper as the B
 Edit the Makefile:  
 ```
 FAMILY = STM32F0xx
-BOARD = PILL_F103XX
+BOARD = DEMO_F030F4
 PROC = STM32F030x6
 ARM = cortex-m0
 ```  
