@@ -10,12 +10,19 @@
             "name": "STM32 OpenOCD",
             "runToMain": true,
             "preLaunchTask": "build",
+            "preLaunchCommands": [
+                "mon arm semihosting enable"
+            ],
+            "postLaunchCommands": [
+                
+            ],
             "device": "STM32F103C8",
             "configFiles": [
                 "interface/stlink-v2.cfg",
                 "target/stm32f1x.cfg"
             ],
-            "showDevDebugOutput": true,
+            "showDevDebugOutput": false,
+            "internalConsoleOptions": "openOnSessionStart",                    
         }
     ]
 }
