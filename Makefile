@@ -50,6 +50,7 @@ LDFLAGS += -T$(VARIANT)/ldscript.ld
 LDFLAGS += -LD:/Dev-Tools/CMSIS_5/CMSIS/DSP/Lib/GCC 
 LDFLAGS += "-Wl,-Map,bin/firmware.map" 
 LDFLAGS += -Wl,--start-group -Wl,--whole-archive -Wl,--no-whole-archive -lc -Wl,--end-group 
+LDFLAGS += --specs=rdimon.specs -lrdimon
 #LDFLAGS += -Wl,--verbose
 
 # Misc. programs

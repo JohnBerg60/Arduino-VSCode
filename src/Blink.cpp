@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include <Wire.h>
-#include <SPI.h>
+
+extern "C" void initialise_monitor_handles(void);
 
 void setup();
 void loop();
@@ -9,15 +9,17 @@ void loop();
 
 void setup()
 {
+    initialise_monitor_handles();
     pinMode(LED, OUTPUT);
-    Serial.begin(9600);
 }
+
+int cnt = 0;
 
 void loop()
 { 
     digitalWrite(LED, HIGH);
-    delay(500);
+    delay(100);
     digitalWrite(LED, LOW);
-    delay(500);
-    Serial.println("Hello World!");
+    delay(100);
+    printf("Count value: %d\n", cnt++);
 }

@@ -18,6 +18,7 @@ During coding, intellisense assists:
 Debugger at a breakpoint, showing global and local vars. Also a variable is watched:  
 ![Debugger](doc/debugger.png?raw=true "")
 
+For quick and dirty debugging semihosting can be used.
 
 ## Getting Started
 
@@ -36,7 +37,7 @@ D:\Dev-Tools
 | - CMSIS_5
 | - gcc-arm-8
 | - MinGW-W64
-| - stlink-1.3.0-win64
+| - openocd-0.10.0
 ```
 
 ### Arduino_Core_STM32
@@ -49,18 +50,18 @@ Unpack it under the root of the toolchain.
 
 ### gcc-arm-8
 Download the zip from [developer.arm.com](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-win32.exe?revision=b3eb9c4d-f49f-4694-8928-2084c9f090ac?product=GNU%20Arm%20Embedded%20Toolchain,32-bit,,Windows,8-2019-q3-update)  
-Unpack it under the root of the toolchain, and rename the folder to gcc-arm-8.  
+Unpack under the root of the toolchain, and rename the folder to gcc-arm-8.  
 Edit your path (windows r --> env) and add the bin dir of the toolchain.  
 
 ### MingGw-X64
 Download the zip from [sourceforge](https://sourceforge.net/projects/mingw-w64/)  
-Unpack it, and move the folder under the dev tools.
+Unpack, and move the folder under the dev tools.
 Edit your path (windows r --> env) and add the bin dir of the MingGw-X64.  
 MingGW-X64 is used for make.  For convenience, just copy mingw32-make.exe to make.exe (220kB).    
 
-### stlink-1.3.0-win64
-Download the zip from [github](https://github.com/texane/stlink/releases/tag/1.3.0)  
-Unpack it, and move the folder under the dev tools.  
+### openocd-0.10.0
+Download prebuilt windows binaries from [here](http://www.freddiechopin.info/en/download/category/4-openocd)  
+Unpack, and move the folder under the dev tools.  
 
 ### Preparing Visual Studio Code
 VSCode needs two extensions:  
@@ -96,6 +97,15 @@ Edit the sketch, the LED on this board is on PA4.
 Run the build task(or use ```make``` in a bash terminal), build should be without any errors.  
 
 note: for intellisense to work, these settings also need to be configured in ```c_cpp_properties.json```.
+
+### Semihosting
+Semihosting can send printf commands (and some others) directly over the ST-Link interface to the Output window of visual Studio Code.  
+There is no need to setup a UART and a serial monitor. This is a huge advantage. On the other hand, semihosting is not veri fast.
+To use semihosting following needs to be done:  
+- add ```LDFLAGS += --specs=lrdimon.specs -lrdimon``` to the linker flags.
+- add ```extern "C" void initialise_monitor_handles(void);``` to the beginning of the sketch.
+- add a call to ```initialise_monitor_handles();```  to the setup function.
+Launch.json is already configured to use semihosting. Only the ```target``` and the ```device``` need to be set.
 
 
 ### Useful commands
