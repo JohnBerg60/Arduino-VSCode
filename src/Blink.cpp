@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-extern "C" void initialise_monitor_handles(void);
+//extern "C" void initialise_monitor_handles(void);
 
 void setup();
 void loop();
@@ -9,7 +9,7 @@ void loop();
 
 void setup()
 {
-    initialise_monitor_handles();
+    //initialise_monitor_handles();
     pinMode(LED, OUTPUT);
 }
 
@@ -19,5 +19,5 @@ void loop()
     delay(100);
     digitalWrite(LED, LOW);
     delay(100);
-    printf("Hello World!");
+//    printf("Hello World!");
 }

@@ -4,14 +4,18 @@
         {
             "type": "cortex-debug",
             "request": "launch",
-            "servertype": "stutil",
+            "servertype": "openocd",
             "cwd": "${workspaceRoot}",
             "executable": "./bin/firmware.elf",
-            "name": "STM32 Debug (ST-Util)",
+            "name": "STM32 OpenOCD",
             "runToMain": true,
             "preLaunchTask": "build",
             "device": "STM32F103C8",
-            "v1": false
+            "configFiles": [
+                "interface/stlink-v2.cfg",
+                "target/stm32f1x.cfg"
+            ],
+            "showDevDebugOutput": true,
         }
     ]
 }
